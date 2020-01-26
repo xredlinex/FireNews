@@ -8,23 +8,38 @@
 
 import UIKit
 
+protocol NewsTableViewCellDelegate {
+    func didTapShowDescrioption(index: Int)
+}
+
 class NewsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var newsImageView: UIImageView!
-    
     @IBOutlet weak var newsTitleTextLabel: UILabel!
-    
     @IBOutlet weak var newsDescriptionTextLabel: UILabel!
-
     @IBOutlet weak var newsPublishAtTextLabel: UILabel!
     
-
-
+    @IBOutlet weak var showDescriotionHeightContstraint: NSLayoutConstraint!
+    
+    
+    var delegate: NewsTableViewCellDelegate?
+    var showDescription = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    
+    
+    @IBAction func didTapShowDescription(_ sender: Any) {
+  
+        showDescript()
+        
+        
+        
+        
+    }
+    
     
     func updateNewsCell(_ news: NewsArticlesModel) {
         
@@ -32,7 +47,12 @@ class NewsTableViewCell: UITableViewCell {
         
         newsDescriptionTextLabel.text = news.description ?? "-"
         
-        newsPublishAtTextLabel.text = news.publishAt ?? "-"
+        newsPublishAtTextLabel.text = news.publishedAt ?? "-"
+    }
+    
+    
+    func showDescript() {
+        delegate?.didTapShowDescrioption(index: tag)
     }
     
 }

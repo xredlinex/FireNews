@@ -13,6 +13,7 @@ class NewsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var news: [NewsArticlesModel] = []
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,8 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
         cell.updateNewsCell(news[indexPath.row])
+        cell.delegate = self
+        cell.tag = indexPath.row
         return cell
     }
     
@@ -47,6 +50,18 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
+    
+}
+
+extension NewsListViewController: NewsTableViewCellDelegate {
+    func didTapShowDescrioption(index: Int) {
+        
+        debugPrint(index)
+        
+        
+
+    }
     
     
 }

@@ -10,6 +10,8 @@ import UIKit
 
 class SortFilterViewController: UIViewController {
 
+    var news: [NewsArticlesModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

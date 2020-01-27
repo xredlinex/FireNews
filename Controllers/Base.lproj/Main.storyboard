@@ -45,7 +45,7 @@
                                                             <constraint firstAttribute="height" constant="34" id="kPj-ZB-gDn"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,7 +74,7 @@
                                                             <constraint firstAttribute="height" constant="34" id="j0Q-AJ-LhH"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -103,7 +103,7 @@
                                                             <constraint firstAttribute="height" constant="34" id="AYv-nC-LE5"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -207,9 +207,75 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAB-yW-5IE">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOs-XQ-hUg">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ow9-ry-WYX">
+                                                <rect key="frame" x="16" y="5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="9FM-CF-Z7o"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Jee-Ta-zPp"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eiE-PN-Wi7">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="didTapGoBackActionButton:" destination="R8B-On-T17" eventType="touchUpInside" id="b5K-nw-r2M"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="eiE-PN-Wi7" firstAttribute="top" secondItem="XOs-XQ-hUg" secondAttribute="top" id="JDO-H8-T2n"/>
+                                            <constraint firstItem="ow9-ry-WYX" firstAttribute="centerX" secondItem="XOs-XQ-hUg" secondAttribute="centerX" multiplier="0.8" id="KK6-qR-R3V"/>
+                                            <constraint firstItem="eiE-PN-Wi7" firstAttribute="leading" secondItem="XOs-XQ-hUg" secondAttribute="leading" id="Qc1-Rc-oZw"/>
+                                            <constraint firstItem="ow9-ry-WYX" firstAttribute="centerY" secondItem="XOs-XQ-hUg" secondAttribute="centerY" id="T9f-Z8-5a8"/>
+                                            <constraint firstAttribute="trailing" secondItem="eiE-PN-Wi7" secondAttribute="trailing" id="WC2-pf-CcB"/>
+                                            <constraint firstAttribute="width" constant="90" id="Zyz-fb-kNc"/>
+                                            <constraint firstAttribute="bottom" secondItem="eiE-PN-Wi7" secondAttribute="bottom" id="hMP-8g-qkx"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ey-1V-y3V">
+                                        <rect key="frame" x="324" y="0.0" width="90" height="50"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UuL-Vl-ECa">
+                                                <rect key="frame" x="34" y="5" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="Dap-Wv-POd"/>
+                                                    <constraint firstAttribute="height" constant="40" id="iwt-SC-GQu"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZE-zl-8pT">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="didTapSortActionButton:" destination="R8B-On-T17" eventType="touchUpInside" id="y3u-U8-t8S"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="zZE-zl-8pT" firstAttribute="leading" secondItem="0Ey-1V-y3V" secondAttribute="leading" id="9ie-fY-Erw"/>
+                                            <constraint firstItem="zZE-zl-8pT" firstAttribute="top" secondItem="0Ey-1V-y3V" secondAttribute="top" id="O1o-IA-Fqz"/>
+                                            <constraint firstItem="UuL-Vl-ECa" firstAttribute="centerY" secondItem="0Ey-1V-y3V" secondAttribute="centerY" id="PUJ-jn-H8G"/>
+                                            <constraint firstAttribute="bottom" secondItem="zZE-zl-8pT" secondAttribute="bottom" id="VaF-ir-L34"/>
+                                            <constraint firstAttribute="trailing" secondItem="zZE-zl-8pT" secondAttribute="trailing" id="hzt-do-pNV"/>
+                                            <constraint firstItem="UuL-Vl-ECa" firstAttribute="centerX" secondItem="0Ey-1V-y3V" secondAttribute="centerX" multiplier="1.2" id="jbF-rC-4oG"/>
+                                            <constraint firstAttribute="width" constant="90" id="n1s-zL-X6D"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="0Ey-1V-y3V" secondAttribute="trailing" id="011-Og-LJo"/>
+                                    <constraint firstItem="XOs-XQ-hUg" firstAttribute="leading" secondItem="mAB-yW-5IE" secondAttribute="leading" id="1Vw-oJ-rEq"/>
                                     <constraint firstAttribute="height" constant="50" id="4wM-RA-rHc"/>
+                                    <constraint firstAttribute="bottom" secondItem="XOs-XQ-hUg" secondAttribute="bottom" id="DAY-ly-3yh"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Ey-1V-y3V" secondAttribute="bottom" id="Rpw-H3-3bt"/>
+                                    <constraint firstItem="0Ey-1V-y3V" firstAttribute="top" secondItem="mAB-yW-5IE" secondAttribute="top" id="c1j-hx-PEA"/>
+                                    <constraint firstItem="XOs-XQ-hUg" firstAttribute="top" secondItem="mAB-yW-5IE" secondAttribute="top" id="cKT-no-lW6"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oIj-D9-jFH">
@@ -239,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H9M-px-bbc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2007" y="138"/>
+            <point key="canvasLocation" x="2005.7971014492755" y="137.94642857142856"/>
         </scene>
         <!--News View Controller-->
         <scene sceneID="aq8-Fs-OES">

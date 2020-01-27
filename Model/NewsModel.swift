@@ -35,6 +35,7 @@ class NewsArticlesModel: Mappable {
     var urlToImage: String?
     var publishedAt: String?
     var content: String?
+    var showDescript = false
     
     required init?(map: Map) {
         

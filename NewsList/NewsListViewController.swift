@@ -13,7 +13,6 @@ class NewsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var news: [NewsArticlesModel] = []
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +25,21 @@ class NewsListViewController: UIViewController {
         super.viewWillAppear(animated)
         
     }
+    
+    
+    @IBAction func didTapGoBackActionButton(_ sender: Any) {
+        navigationController?.popViewController(animated: false)
+    }
+    
+    
+    @IBAction func didTapSortActionButton(_ sender: Any) {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SortFilterViewController") as! SortFilterViewController
+        viewController.news = news
+        navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
+    
 }
 
 extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -48,20 +62,16 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    
-    
-    
+
 }
 
 extension NewsListViewController: NewsTableViewCellDelegate {
     func didTapShowDescrioption(index: Int) {
-        
-        debugPrint(index)
-        
-        
-
+        if news[index].showDescript == false {
+            news[index].showDescript = true
+        } else {
+            news[index].showDescript = false
+        }
+        tableView.reloadData()
     }
-    
-    
 }

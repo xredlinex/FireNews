@@ -53,7 +53,6 @@ class SearchNewsViewController: UIViewController {
     }
 }
 
-
 //  MARK: - ALAMOFIRE -
 extension SearchNewsViewController  {
     
@@ -70,8 +69,6 @@ extension SearchNewsViewController  {
             
             Alamofire.request(recieveUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
                 if let recieveNews = response.result.value?.articles {
-                    debugPrint(parameters)
-                    debugPrint(recieveNews.count)
                     if recieveNews.count != 0 {
                         debugPrint(recieveNews.count)
                         self.news  = recieveNews

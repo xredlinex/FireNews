@@ -18,7 +18,7 @@ class SearchNewsViewController: UIViewController {
     @IBOutlet weak var toDateTextField: UITextField!
     @IBOutlet weak var bottomHeightConstraint: NSLayoutConstraint!
     
-    let datePicker = UIDatePicker()
+    
     var activityIndicatorView = UIActivityIndicatorView()
     var news: [NewsArticlesModel] = []
     
@@ -28,10 +28,9 @@ class SearchNewsViewController: UIViewController {
         searchNewsTextField.delegate = self
         fromDateTextField.delegate = self
         toDateTextField.delegate = self
-        inputDatePicker()
+
         addNextButtonFromDate()
         addDoneButtonToDate()
-        
         
         let keyboardHide = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
         view.addGestureRecognizer(keyboardHide)
@@ -45,12 +44,41 @@ class SearchNewsViewController: UIViewController {
     }
     
     @IBAction func didTapSearchNewsActionButton(_ sender: Any) {
+       
         if let keyword = searchNewsTextField.text, keyword != "", let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
-            searchNews(keyword, fromDate, toDate)
+            if fromDate != "" && toDate != "" {
+                if checkDateFormat(fromDate) == true || checkDateFormat(toDate) == true {
+                    searchNews(keyword, fromDate, toDate)
+                } else {
+                    
+                    fromDateTextField.text = ""
+                    toDateTextField.text = ""
+                }
+            } else {
+                searchNews(keyword)
+            }
+            
+            
+            
         } else {
-            showErrorAlert("Empty Search Fields!")
+            showErrorAlert("Empty Search Field!")
         }
     }
+}
+
+extension SearchNewsViewController {
+    func checkDateFormat(_ date: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        if let stringDate = dateFormatter.date(from: date) {
+            debugPrint(stringDate)
+            return true
+        } else {
+            showErrorAlert("Wrong data format! Enter Date type YYYY-MM-DD")
+        }
+        return false
+    }
+
 }
 
 
@@ -70,10 +98,7 @@ extension SearchNewsViewController  {
             
             Alamofire.request(recieveUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
                 if let recieveNews = response.result.value?.articles {
-                    debugPrint(parameters)
-                    debugPrint(recieveNews.count)
                     if recieveNews.count != 0 {
-                        debugPrint(recieveNews.count)
                         self.news  = recieveNews
                         DispatchQueue.main.async {
                             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
@@ -82,15 +107,12 @@ extension SearchNewsViewController  {
                                 self.navigationController?.pushViewController(viewController, animated: true)
                             }
                     } else {
-                        self.showErrorAlert("Can't find news for keyword - \(keyword)")
+                        self.showErrorAlert("Can't find news for keyword - \(keyword), or wron time period")
                     }
                 }
-
             }
         } else {
             debugPrint("ädd error")
         }
     }
 }
-
-

@@ -63,46 +63,49 @@ extension SearchNewsViewController {
     }
 }
 
-//  MARK: - DATA PICKER - (recieve date from date picker)
+//  MARK: - ADD NEXT DONE BUTTONS TO NUMBER PAD - 
 extension SearchNewsViewController {
-    func inputDatePicker() {
-        datePicker.datePickerMode = .date
-        fromDateTextField.inputView = datePicker
-        toDateTextField.inputView = datePicker
-    }
-    
     func addNextButtonFromDate() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let nextToolBarButton = UIBarButtonItem.init(title: "Next", style: .done, target: self, action: #selector(nextBarButtonFromDate))
+        let nextToolBarButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextBarButtonFromDate))
         toolBar.setItems([nextToolBarButton], animated: false)
         fromDateTextField.inputAccessoryView = toolBar
     }
-    
     func addDoneButtonToDate() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        let doneToolBarButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneBarButtonToDate))
+        let doneToolBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneBarButtonToDate))
         toolBar.setItems([doneToolBarButton], animated: false)
         toDateTextField.inputAccessoryView = toolBar
+        
     }
-    
     @objc func nextBarButtonFromDate() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
-        let date = dateFormatter.string(from: datePicker.date)
-        fromDateTextField.text = "\(date)"
         toDateTextField.becomeFirstResponder()
     }
-    
     @objc func doneBarButtonToDate() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
-        let date = dateFormatter.string(from: datePicker.date)
-        toDateTextField.text = "\(date)"
         toDateTextField.resignFirstResponder()
     }
+    
 }
+
+
+//    @objc func nextBarButtonFromDate() {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "YYYY-MM-DD"
+//        let date = dateFormatter.string(from: datePicker.date)
+//        fromDateTextField.text = "\(date)"
+//        toDateTextField.becomeFirstResponder()
+//    }
+//    
+//    @objc func doneBarButtonToDate() {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "YYYY-MM-DD"
+//        let date = dateFormatter.string(from: datePicker.date)
+//        toDateTextField.text = "\(date)"
+//        toDateTextField.resignFirstResponder()
+//    }
+//}
 
 //  MARK: - KEYBOARD ACTION - 
 extension SearchNewsViewController {

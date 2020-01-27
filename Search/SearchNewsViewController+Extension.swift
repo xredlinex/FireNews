@@ -90,23 +90,6 @@ extension SearchNewsViewController {
 }
 
 
-//    @objc func nextBarButtonFromDate() {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "YYYY-MM-DD"
-//        let date = dateFormatter.string(from: datePicker.date)
-//        fromDateTextField.text = "\(date)"
-//        toDateTextField.becomeFirstResponder()
-//    }
-//    
-//    @objc func doneBarButtonToDate() {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "YYYY-MM-DD"
-//        let date = dateFormatter.string(from: datePicker.date)
-//        toDateTextField.text = "\(date)"
-//        toDateTextField.resignFirstResponder()
-//    }
-//}
-
 //  MARK: - KEYBOARD ACTION - 
 extension SearchNewsViewController {
     @objc func keyboardWillHide() {

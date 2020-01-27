@@ -29,8 +29,7 @@ class SearchNewsViewController: UIViewController {
         fromDateTextField.delegate = self
         toDateTextField.delegate = self
 
-        addNextButtonFromDate()
-        addDoneButtonToDate()
+
         
         let keyboardHide = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
         view.addGestureRecognizer(keyboardHide)
@@ -46,20 +45,16 @@ class SearchNewsViewController: UIViewController {
     @IBAction func didTapSearchNewsActionButton(_ sender: Any) {
        
         if let keyword = searchNewsTextField.text, keyword != "", let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
-            if fromDate != "" && toDate != "" {
+            if fromDate != "" || toDate != "" {
                 if checkDateFormat(fromDate) == true || checkDateFormat(toDate) == true {
                     searchNews(keyword, fromDate, toDate)
                 } else {
-                    
                     fromDateTextField.text = ""
                     toDateTextField.text = ""
                 }
             } else {
                 searchNews(keyword)
             }
-            
-            
-            
         } else {
             showErrorAlert("Empty Search Field!")
         }
@@ -74,11 +69,12 @@ extension SearchNewsViewController {
             debugPrint(stringDate)
             return true
         } else {
-            showErrorAlert("Wrong data format! Enter Date type YYYY-MM-DD")
+            if date != "" {
+                showErrorAlert("Wrong data format! Enter Date type YYYY-MM-DD")
+            }
         }
         return false
     }
-
 }
 
 
@@ -109,10 +105,12 @@ extension SearchNewsViewController  {
                     } else {
                         self.showErrorAlert("Can't find news for keyword - \(keyword), or wron time period")
                     }
+                } else {
+                    self.showErrorAlert("Wrong date period, please enter correct date, or left field empty")
                 }
             }
         } else {
-            debugPrint("ädd error")
+            showErrorAlert("fatal error")
         }
     }
 }

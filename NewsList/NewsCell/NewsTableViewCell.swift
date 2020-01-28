@@ -41,6 +41,7 @@ class NewsTableViewCell: UITableViewCell {
     
     func updateNewsCell(_ news: NewsArticlesModel) {
         
+//        MARK: - show hide button -
         if news.showDescript == true {
             showDescriotionHeightContstraint.priority = UILayoutPriority(rawValue: 800)
             newsDescriptionTextLabel.numberOfLines = 0
@@ -51,20 +52,20 @@ class NewsTableViewCell: UITableViewCell {
             showMoreButton.setTitle("show more", for: .normal)
         }
         
+//        MARK: - dowload image from url kingsfisher -
         if let url = news.urlToImage {
           let imgUrl = URL(string: url)
             newsImageView.kf.setImage(with: imgUrl)
         } else {
             newsImageView.image = UIImage(named: "noImage")
         }
-        
- 
-        
 
+        
         newsTitleTextLabel.text = news.title ?? "-"
         newsDescriptionTextLabel.text = news.description ?? "-"
-        newsPublishAtTextLabel.text = news.publishedAt ?? "-"
-        
+        newsPublishAtTextLabel.text = convertDate(news.publishedAt ?? "-")
+
+//        MARK: - visual ui part -
         viewForImageView.clipsToBounds = true
         viewForImageView.layer.cornerRadius = 8
         cellView.clipsToBounds = true
@@ -73,4 +74,20 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     
+}
+
+//  MARK: - date convert
+extension NewsTableViewCell {
+    func convertDate(_ dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .iso8601)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ssZ"
+        let format = DateFormatter()
+        format.dateFormat = "DD / MMM / YYYY hh:mm"
+        if let date = dateFormatter.date(from: dateString) {
+            return format.string(from: date)
+        } else {
+            return "-"
+        }
+    }
 }

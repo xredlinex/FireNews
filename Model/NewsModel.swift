@@ -38,7 +38,6 @@ class NewsArticlesModel: Mappable {
     var showDescript = false
     
     required init?(map: Map) {
-        
     }
     
     func mapping(map: Map) {
@@ -59,7 +58,6 @@ class NewsArticlesSourseModel: Mappable {
     var name: String?
     
     required init?(map: Map) {
-         
      }
      
     func mapping(map: Map) {

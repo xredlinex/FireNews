@@ -24,20 +24,15 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var showDescriotionHeightContstraint: NSLayoutConstraint!
     
-
     var delegate: NewsTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    
-    
     @IBAction func didTapShowDescription(_ sender: Any) {
-  
         delegate?.didTapShowDescrioption(index: tag)
     }
-    
     
     func updateNewsCell(_ news: NewsArticlesModel) {
         
@@ -60,7 +55,6 @@ class NewsTableViewCell: UITableViewCell {
             newsImageView.image = UIImage(named: "noImage")
         }
 
-        
         newsTitleTextLabel.text = news.title ?? "-"
         newsDescriptionTextLabel.text = news.description ?? "-"
         newsPublishAtTextLabel.text = convertDate(news.publishedAt ?? "-")
@@ -70,10 +64,7 @@ class NewsTableViewCell: UITableViewCell {
         viewForImageView.layer.cornerRadius = 8
         cellView.clipsToBounds = true
         cellView.layer.cornerRadius = 8
-        
     }
-    
-    
 }
 
 //  MARK: - date convert
@@ -83,7 +74,7 @@ extension NewsTableViewCell {
         dateFormatter.calendar = Calendar(identifier: .iso8601)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ssZ"
         let format = DateFormatter()
-        format.dateFormat = "DD / MMM / YYYY hh:mm"
+        format.dateFormat = "dd / MMM / yyyy hh:mm a"
         if let date = dateFormatter.date(from: dateString) {
             return format.string(from: date)
         } else {

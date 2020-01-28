@@ -10,29 +10,35 @@ import Foundation
 import UIKit
 import Alamofire
 import AlamofireObjectMapper
+import Kingfisher
 
 class SearchNewsViewController: UIViewController {
     
+    @IBOutlet weak var newsLogoImageView: UIImageView!
     @IBOutlet weak var searchNewsTextField: UITextField!
     @IBOutlet weak var fromDateTextField: UITextField!
     @IBOutlet weak var toDateTextField: UITextField!
     @IBOutlet weak var bottomHeightConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var fromDateView: UIView!
+    @IBOutlet weak var toDateView: UIView!
+    @IBOutlet weak var searchButton: UIButton!
     
     var activityIndicatorView = UIActivityIndicatorView()
     var news: [NewsArticlesModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchNewsTextField.delegate = self
-        fromDateTextField.delegate = self
-        toDateTextField.delegate = self
 
-
+        uiElementh()
         
         let keyboardHide = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
         view.addGestureRecognizer(keyboardHide)
+        searchNewsTextField.delegate = self
+        fromDateTextField.delegate = self
+        toDateTextField.delegate = self
+        addDoneButtonToDate()
+        addNextButtonFromDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,8 +52,13 @@ class SearchNewsViewController: UIViewController {
        
         if let keyword = searchNewsTextField.text, keyword != "", let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
             if fromDate != "" || toDate != "" {
-                if checkDateFormat(fromDate) == true || checkDateFormat(toDate) == true {
-                    searchNews(keyword, fromDate, toDate)
+                if checkDateFormat(fromDate) == true && checkDateFormat(toDate) == true {
+                    if fromDate < toDate {
+                       searchNews(keyword, fromDate, toDate)
+                    }
+                    else {
+                        showErrorAlert("Wrong Period")
+                    }
                 } else {
                     fromDateTextField.text = ""
                     toDateTextField.text = ""
@@ -64,13 +75,13 @@ class SearchNewsViewController: UIViewController {
 extension SearchNewsViewController {
     func checkDateFormat(_ date: String) -> Bool {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         if let stringDate = dateFormatter.date(from: date) {
             debugPrint(stringDate)
             return true
         } else {
             if date != "" {
-                showErrorAlert("Wrong data format! Enter Date type YYYY-MM-DD")
+                showErrorAlert("Wrong data format! Enter Date type yyyy-mm-dd")
             }
         }
         return false
@@ -83,7 +94,6 @@ extension SearchNewsViewController  {
     
     func searchNews(_ keyword: String,_ fromDate: String? = nil,_ toDate: String? = nil) {
         showActivityIndicator()
-
         let parameters = ["q" : keyword,
                           "from" : fromDate ?? "",
                           "to" : toDate ?? "",
@@ -91,7 +101,6 @@ extension SearchNewsViewController  {
         
         let url = URL(string: "https://newsapi.org/v2/everything")
         if let recieveUrl = url {
-            
             Alamofire.request(recieveUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
                 if let recieveNews = response.result.value?.articles {
                     if recieveNews.count != 0 {
@@ -106,7 +115,7 @@ extension SearchNewsViewController  {
                         self.showErrorAlert("Can't find news for keyword - \(keyword), or wron time period")
                     }
                 } else {
-                    self.showErrorAlert("Wrong date period, please enter correct date, or left field empty")
+                    self.showErrorAlert("Wrong date period, please enter correct date, or left field empty.")
                 }
             }
         } else {

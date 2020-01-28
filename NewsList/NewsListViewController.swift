@@ -28,7 +28,8 @@ class NewsListViewController: UIViewController {
     
     
     @IBAction func didTapGoBackActionButton(_ sender: Any) {
-        navigationController?.popViewController(animated: false)
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchNewsViewController") as! SearchNewsViewController
+        navigationController?.pushViewController(viewController, animated: false)
     }
     
     

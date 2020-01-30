@@ -60,7 +60,15 @@ class SearchNewsViewController: UIViewController {
                     if fromDate < toDate {
                         parameters["fromDate"] = fromDate
                         parameters["to"] = toDate
-                        request.newsRequest(parameters)
+                        news = request.newsRequest(parameters)
+                        
+                DispatchQueue.main.async {
+                 let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
+                 viewController.news = self.news
+                 viewController.parameters = self.parameters
+                 self.navigationController?.pushViewController(viewController, animated: true)
+             }
+                        
                     } else {
                         showAlertErrorMessage("Wrong Period")
                     }
@@ -69,7 +77,13 @@ class SearchNewsViewController: UIViewController {
                     toDateTextField.text = ""
                 }
             } else {
-                request.newsRequest(parameters)
+                news = request.newsRequest(parameters)
+                DispatchQueue.main.async {
+                    let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
+                    viewController.news = self.news
+                    viewController.parameters = self.parameters
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
             }
             
         } else {
@@ -95,42 +109,42 @@ extension SearchNewsViewController {
 }
 
 
-//  MARK: - ALAMOFIRE -
-extension SearchNewsViewController  {
-    
-    func searchNews(_ keyword: String,_ fromDate: String? = nil,_ toDate: String? = nil) {
-        showActivityIndicator()
-        let parameters = ["q" : keyword,
-                          "from" : fromDate ?? "",
-                          "to" : toDate ?? "",
-                          "pageSize": "100"]
-        
-        let url = URL(string: "https://newsapi.org/v2/everything")
-        if let recieveUrl = url {
-            Alamofire.request(recieveUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
-                if let recieveNews = response.result.value?.articles {
-                    if recieveNews.count != 0 {
-                        self.news  = recieveNews
-                        DispatchQueue.main.async {
-                            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
-                                viewController.news = self.news
-                                viewController.parameters = parameters
-                                self.hideActivityIndicator()
-                                self.navigationController?.pushViewController(viewController, animated: true)
-                            }
-                    } else {
-                        self.showErrorAlert("Can't find news for keyword - \(keyword), or wron time period")
-                    }
-                } else {
-                    self.showErrorAlert("Wrong date period, please enter correct date, or left field empty.")
-                    
-                }
-            }
-        } else {
-            showErrorAlert("fatal error")
-        }
-    }
-}
-
+////  MARK: - ALAMOFIRE -
+//extension SearchNewsViewController  {
+//
+//    func searchNews(_ keyword: String,_ fromDate: String? = nil,_ toDate: String? = nil) {
+//        showActivityIndicator()
+//        let parameters = ["q" : keyword,
+//                          "from" : fromDate ?? "",
+//                          "to" : toDate ?? "",
+//                          "pageSize": "100"]
+//
+//        let url = URL(string: "https://newsapi.org/v2/everything")
+//        if let recieveUrl = url {
+//            Alamofire.request(recieveUrl, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
+//                if let recieveNews = response.result.value?.articles {
+//                    if recieveNews.count != 0 {
+//                        self.news  = recieveNews
+//                        DispatchQueue.main.async {
+//                            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
+//                                viewController.news = self.news
+//                                viewController.parameters = parameters
+//                                self.hideActivityIndicator()
+//                                self.navigationController?.pushViewController(viewController, animated: true)
+//                            }
+//                    } else {
+//                        self.showErrorAlert("Can't find news for keyword - \(keyword), or wron time period")
+//                    }
+//                } else {
+//                    self.showErrorAlert("Wrong date period, please enter correct date, or left field empty.")
+//
+//                }
+//            }
+//        } else {
+//            showErrorAlert("fatal error")
+//        }
+//    }
+//}
+//
 
 

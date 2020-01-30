@@ -14,7 +14,10 @@ import AlamofireObjectMapper
 
 class SearchFireNews: UIViewController {
     
-    func newsRequest(_ parameters: [String: String], sortByTitle: Bool? = nil) {
+    func newsRequest(_ parameters: [String: String], sortByTitle: Bool? = nil) -> [NewsArticlesModel] {
+
+        var news: [NewsArticlesModel] = []
+
         
         let url = URL(string: "https://newsapi.org/v2/everything")
         if let recieveUrl = url {
@@ -23,22 +26,15 @@ class SearchFireNews: UIViewController {
                               parameters: parameters,
                               encoding: URLEncoding.default,
                               headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
-                if let news = response.result.value?.articles {
-                    if news.count != 0 {
-                        DispatchQueue.main.async {
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            let viewController = storyboard.instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
-                            if sortByTitle == true {
-                                viewController.news = news.sorted(by: { $0.title ?? "" < $1.title ?? ""})
-                                viewController.parameters = parameters
-                            } else {
-                                viewController.news = news
-                                viewController.parameters = parameters
-                            }
-                            self.navigationController?.pushViewController(viewController, animated: true)
+                if let recieveNews = response.result.value?.articles {
+                    if recieveNews.count != 0 {
+                        if sortByTitle == true {
+                            news = recieveNews.sorted(by: { $0.title ?? "" < $1.title ?? ""})
+                        } else {
+                            news = recieveNews
                         }
                     } else {
-                        self.showAlertErrorMessage("Can't find news for keyword - \(String(describing: parameters["q"])), or wrong date period )")
+                        self.showAlertErrorMessage("Can't find news for keyword - \(parameters["q"] ?? "---"), or wrong date period )")
                     }
                 } else {
                     self.showAlertErrorMessage("Wrong date period, please enter correct date or left empty date fields")
@@ -47,6 +43,7 @@ class SearchFireNews: UIViewController {
         } else {
             showAlertErrorMessage("Fatal Error")
         }
+        return news
     }
 }
 

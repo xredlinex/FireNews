@@ -14,7 +14,11 @@ extension UIViewController {
         let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in
         }
+        
         alertController.addAction(alertAction)
-        present(alertController, animated: true)
+
+      
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+        
     }
 }

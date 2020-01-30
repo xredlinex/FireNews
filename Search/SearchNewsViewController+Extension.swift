@@ -67,19 +67,19 @@ extension SearchNewsViewController {
         activityIndicatorView.stopAnimating()
     }
 }
-
-//  MARK: - ALERT CONTROLLER -
-extension SearchNewsViewController {
-    func showErrorAlert(_ message: String) {
-        view.isUserInteractionEnabled = true
-        activityIndicatorView.stopAnimating()
-        let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in
-        }
-        alertController.addAction(alertAction)
-        present(alertController, animated: true)
-    }
-}
+//
+////  MARK: - ALERT CONTROLLER -
+//extension SearchNewsViewController {
+//    func showErrorAlert(_ message: String) {
+//        view.isUserInteractionEnabled = true
+//        activityIndicatorView.stopAnimating()
+//        let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+//        let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in
+//        }
+//        alertController.addAction(alertAction)
+//        present(alertController, animated: true)
+//    }
+//}
 
 //  MARK: - ADD NEXT DONE BUTTONS TO NUMBER PAD - 
 extension SearchNewsViewController {

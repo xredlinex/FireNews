@@ -24,8 +24,10 @@ class SearchNewsViewController: UIViewController {
     @IBOutlet weak var toDateView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     
+    var request = SearchFireNews()
     var activityIndicatorView = UIActivityIndicatorView()
     var news: [NewsArticlesModel] = []
+    var parameters: [String: String] = [:]
     
     
     override func viewDidLoad() {
@@ -50,25 +52,28 @@ class SearchNewsViewController: UIViewController {
     }
     
     @IBAction func didTapSearchNewsActionButton(_ sender: Any) {
-       
+        
         if let keyword = searchNewsTextField.text, keyword != "", let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
+            parameters["q"] = keyword
             if fromDate != "" || toDate != "" {
-                if checkDateFormat(fromDate) == true && checkDateFormat(toDate) == true {
+                if checkDateFormat(fromDate) == true && checkDateFormat(toDate) {
                     if fromDate < toDate {
-                       searchNews(keyword, fromDate, toDate)
-                    }
-                    else {
-                        showErrorAlert("Wrong Period")
+                        parameters["fromDate"] = fromDate
+                        parameters["to"] = toDate
+                        request.newsRequest(parameters)
+                    } else {
+                        showAlertErrorMessage("Wrong Period")
                     }
                 } else {
                     fromDateTextField.text = ""
                     toDateTextField.text = ""
                 }
             } else {
-                searchNews(keyword)
+                request.newsRequest(parameters)
             }
+            
         } else {
-            showErrorAlert("Empty Search Field!")
+            showAlertErrorMessage("Empty Search Field!")
         }
     }
 }
@@ -82,7 +87,7 @@ extension SearchNewsViewController {
             return true
         } else {
             if date != "" {
-                showErrorAlert("Wrong data format! Enter Date type yyyy-mm-dd")
+                showAlertErrorMessage("Wrong data format! Enter Date type yyyy-mm-dd")
             }
         }
         return false
@@ -118,6 +123,7 @@ extension SearchNewsViewController  {
                     }
                 } else {
                     self.showErrorAlert("Wrong date period, please enter correct date, or left field empty.")
+                    
                 }
             }
         } else {
@@ -125,5 +131,6 @@ extension SearchNewsViewController  {
         }
     }
 }
+
 
 

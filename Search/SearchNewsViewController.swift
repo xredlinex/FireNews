@@ -27,6 +27,7 @@ class SearchNewsViewController: UIViewController {
     var activityIndicatorView = UIActivityIndicatorView()
     var news: [NewsArticlesModel] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -108,6 +109,7 @@ extension SearchNewsViewController  {
                         DispatchQueue.main.async {
                             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
                                 viewController.news = self.news
+                                viewController.parameters = parameters
                                 self.hideActivityIndicator()
                                 self.navigationController?.pushViewController(viewController, animated: true)
                             }
@@ -123,3 +125,5 @@ extension SearchNewsViewController  {
         }
     }
 }
+
+

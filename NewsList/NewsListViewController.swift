@@ -13,7 +13,7 @@ class NewsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var news: [NewsArticlesModel] = []
-    var parameters: [String : String] = [:]
+    var parameters: [String : Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()

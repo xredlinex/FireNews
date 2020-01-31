@@ -27,7 +27,7 @@ class SearchNewsViewController: UIViewController {
     var request = SearchFireNews()
     var activityIndicatorView = UIActivityIndicatorView()
     var news: [NewsArticlesModel] = []
-    var parameters: [String: String] = [:]
+    var parameters: [String: Any] = [:]
     
     
     override func viewDidLoad() {
@@ -55,19 +55,24 @@ class SearchNewsViewController: UIViewController {
         
         if let keyword = searchNewsTextField.text, keyword != "", let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
             parameters["q"] = keyword
+            parameters["pageSize"] = 100
             if fromDate != "" || toDate != "" {
                 if checkDateFormat(fromDate) == true && checkDateFormat(toDate) {
                     if fromDate < toDate {
-                        parameters["fromDate"] = fromDate
+                        parameters["from"] = fromDate
                         parameters["to"] = toDate
-                        news = request.newsRequest(parameters)
                         
-                DispatchQueue.main.async {
-                 let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
-                 viewController.news = self.news
-                 viewController.parameters = self.parameters
-                 self.navigationController?.pushViewController(viewController, animated: true)
-             }
+                        request.newsRequest(parameters)
+                        debugPrint()
+    
+                        
+                        
+//                DispatchQueue.main.async {
+//                 let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
+//                 viewController.news = self.news
+//                 viewController.parameters = self.parameters
+//                 self.navigationController?.pushViewController(viewController, animated: true)
+//             }
                         
                     } else {
                         showAlertErrorMessage("Wrong Period")
@@ -78,12 +83,15 @@ class SearchNewsViewController: UIViewController {
                 }
             } else {
                 news = request.newsRequest(parameters)
-                DispatchQueue.main.async {
-                    let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
-                    viewController.news = self.news
-                    viewController.parameters = self.parameters
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                }
+                debugPrint(news.count)
+          
+             
+//                DispatchQueue.main.async {
+//                    let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
+//                    viewController.news = self.news
+//                    viewController.parameters = self.parameters
+//                    self.navigationController?.pushViewController(viewController, animated: true)
+//                }
             }
             
         } else {

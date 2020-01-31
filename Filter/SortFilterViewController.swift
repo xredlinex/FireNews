@@ -13,7 +13,7 @@ import AlamofireObjectMapper
 class SortFilterViewController: UIViewController {
 
     var news: [NewsArticlesModel] = []
-    var parameters: [String : String] = [:]
+    var parameters: [String : Any] = [:]
     
     @IBOutlet weak var sortByDateView: UIView!
     @IBOutlet weak var sortByTitleView: UIView!
@@ -86,7 +86,7 @@ extension SortFilterViewController {
 
 
 extension SortFilterViewController {
-    func sortRequest(_ parameters: [String : String], sortByTitle: Bool? = nil) {
+    func sortRequest(_ parameters: [String : Any], sortByTitle: Bool? = nil) {
         
         
         let url = URL(string: "https://newsapi.org/v2/everything")

@@ -30,34 +30,41 @@ extension UIViewController {
         }
     }
     
-    func hideActivityIndicator() {
-        DispatchQueue.main.async {
-                if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
-                debugPrint(activityIndicator.tag)
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
-                self.view.isUserInteractionEnabled = true
-                
-                }
-        }
-        
-    }
+//    func hideActivityIndicator() {
+//        DispatchQueue.main.async {
+//                if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+//                debugPrint(activityIndicator.tag)
+//                    activityIndicator.hidesWhenStopped = true
+//                activityIndicator.stopAnimating()
+//                activityIndicator.removeFromSuperview()
+//                self.view.isUserInteractionEnabled = true
+//
+//                }
+//        }
+//    }
 }
 
 extension UIViewController {
     
     func showAlertErrorMessage(_ message: String) {
-   
-        
         let customKeyWindow: UIWindow? = UIApplication.shared.keyWindowInConnectedScenes
         let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in}
+        customKeyWindow?.viewWithTag(666)?.removeFromSuperview()
+//        UIApplication.shared.endIgnoringInteractionEvents()
+//        self.view.isUserInteractionEnabled = true
+        
+        
+//        customKeyWindow?.rootViewController?.view.isUserInteractionEnabled = true
+//        self.view.isUserInteractionEnabled = true
+//        customKeyWindow?.isUserInteractionEnabled = true
         alertController.addAction(alertAction)
         customKeyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
         
+        
         DispatchQueue.main.async {
-            debugPrint("indicator")
             if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+                debugPrint("dsds")
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
                 self.view.isUserInteractionEnabled = true

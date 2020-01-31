@@ -8,6 +8,23 @@
 
 import UIKit
 
+//  MARK: - CHECK DATA FORMAT -
+extension SearchNewsViewController {
+    func checkDateFormat(_ date: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let stringDate = dateFormatter.date(from: date) {
+            debugPrint(stringDate)
+            return true
+        } else {
+            if date != "" {
+                showAlertErrorMessage("Wrong data format! Enter Date type yyyy-mm-dd")
+            }
+        }
+        return false
+    }
+}
+
 //  MARK: - TEXT FIELD DELEGATE -
 extension SearchNewsViewController: UITextFieldDelegate {
     
@@ -44,40 +61,22 @@ extension SearchNewsViewController: UITextFieldDelegate {
     }
 }
 
-
-
-
-
-
-//  MARK: - ACTIVITY INDICATOR-
-extension SearchNewsViewController {
-    
-    func showActivityIndicator() {
-        activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.style = .medium
-        activityIndicatorView.color = .white
-        activityIndicatorView.center = self.view.center
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.startAnimating()
-        view.isUserInteractionEnabled = false
-    }
-    
-    func hideActivityIndicator() {
-        view.isUserInteractionEnabled = true
-        activityIndicatorView.stopAnimating()
-    }
-}
-//
-////  MARK: - ALERT CONTROLLER -
+////  MARK: - ACTIVITY INDICATOR-
 //extension SearchNewsViewController {
-//    func showErrorAlert(_ message: String) {
+//    
+//    func showActivityIndicator() {
+//        activityIndicatorView.hidesWhenStopped = true
+//        activityIndicatorView.style = .medium
+//        activityIndicatorView.color = .white
+//        activityIndicatorView.center = self.view.center
+//        view.addSubview(activityIndicatorView)
+//        activityIndicatorView.startAnimating()
+//        view.isUserInteractionEnabled = false
+//    }
+//    
+//    func hideActivityIndicator() {
 //        view.isUserInteractionEnabled = true
 //        activityIndicatorView.stopAnimating()
-//        let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-//        let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in
-//        }
-//        alertController.addAction(alertAction)
-//        present(alertController, animated: true)
 //    }
 //}
 
@@ -88,7 +87,9 @@ extension SearchNewsViewController {
         toolBar.sizeToFit()
         let nextToolBarButton = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(nextBarButtonFromDate))
         let label = UIBarButtonItem(title: "dashes '-' are added automatically", style: .plain, target: self, action: nil)
+        toolBar.layer.backgroundColor = UIColor.systemPurple.cgColor
         label.tintColor = UIColor.systemPurple
+        
         toolBar.setItems([nextToolBarButton, label], animated: false)
         fromDateTextField.inputAccessoryView = toolBar
     }
@@ -98,7 +99,7 @@ extension SearchNewsViewController {
         let doneToolBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneBarButtonToDate))
         let label = UIBarButtonItem(title: "dashes '-' are added automatically", style: .plain, target: self, action: nil)
         label.tintColor = UIColor.systemPurple
-        toolBar.setItems([doneToolBarButton, label], animated: false)
+        toolBar.setItems([label, doneToolBarButton], animated: false)
         toDateTextField.inputAccessoryView = toolBar
     }
     @objc func nextBarButtonFromDate() {

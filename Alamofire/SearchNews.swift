@@ -37,6 +37,8 @@ class SearchFireNews: UIViewController {
                         }
                     } else {
                         self.showAlertErrorMessage("Can't find news for keyword - \(parameters["q"] ?? "---"), or wrong date period )")
+                        
+                        self.hideActivityIndicator()
                     }
             
                 } else {
@@ -49,5 +51,6 @@ class SearchFireNews: UIViewController {
 
     }
 }
+
 
 

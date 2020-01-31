@@ -15,14 +15,54 @@ extension UIApplication {
 }
 
 extension UIViewController {
+    var activityIndicatorTag: Int { return 666 }
+    
+    func showActivityIndicator() {
+        DispatchQueue.main.async {
+            let activityIndicator = UIActivityIndicatorView()
+            activityIndicator.tag = self.activityIndicatorTag
+            activityIndicator.style = .medium
+            activityIndicator.color = .systemPurple
+            activityIndicator.center = self.view.center
+            activityIndicator.startAnimating()
+            self.view.addSubview(activityIndicator)
+            self.view.isUserInteractionEnabled = false
+        }
+    }
+    
+    func hideActivityIndicator() {
+        DispatchQueue.main.async {
+                if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+                debugPrint(activityIndicator.tag)
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                self.view.isUserInteractionEnabled = true
+                
+                }
+        }
+        
+    }
+}
+
+extension UIViewController {
     
     func showAlertErrorMessage(_ message: String) {
-        view.isUserInteractionEnabled = true
+   
+        
         let customKeyWindow: UIWindow? = UIApplication.shared.keyWindowInConnectedScenes
         let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in }
+        let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in}
         alertController.addAction(alertAction)
         customKeyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+        
+        DispatchQueue.main.async {
+            debugPrint("indicator")
+            if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                self.view.isUserInteractionEnabled = true
+            }
+        }
     }
     
     func transferControll(_ news: [NewsArticlesModel], parameters: [String : Any]) {
@@ -37,5 +77,7 @@ extension UIViewController {
         navigationController.pushViewController(viewController, animated: false)
     }
 }
+
+
 
 

@@ -51,9 +51,6 @@
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="china virus .... etc" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iZT-cF-fog">
                                                         <rect key="frame" x="80" y="13" width="254" height="34"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="34" id="kPj-ZB-gDn"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
                                                     </textField>
@@ -62,9 +59,10 @@
                                                 <constraints>
                                                     <constraint firstItem="WF9-bk-PoA" firstAttribute="centerY" secondItem="xR4-Mw-ewR" secondAttribute="centerY" id="9NB-r5-ip2"/>
                                                     <constraint firstAttribute="height" constant="60" id="DPp-AL-AGE"/>
+                                                    <constraint firstItem="iZT-cF-fog" firstAttribute="top" secondItem="xR4-Mw-ewR" secondAttribute="top" constant="13" id="Run-p9-H5G"/>
                                                     <constraint firstAttribute="trailing" secondItem="iZT-cF-fog" secondAttribute="trailing" constant="20" id="WHy-t4-e33"/>
-                                                    <constraint firstItem="iZT-cF-fog" firstAttribute="centerY" secondItem="WF9-bk-PoA" secondAttribute="centerY" id="fJR-4d-VfG"/>
                                                     <constraint firstItem="iZT-cF-fog" firstAttribute="leading" secondItem="WF9-bk-PoA" secondAttribute="trailing" constant="20" id="hFf-aa-lZD"/>
+                                                    <constraint firstAttribute="bottom" secondItem="iZT-cF-fog" secondAttribute="bottom" constant="13" id="jfs-VV-1g0"/>
                                                     <constraint firstItem="WF9-bk-PoA" firstAttribute="leading" secondItem="xR4-Mw-ewR" secondAttribute="leading" constant="20" id="zbu-Ct-Gn3"/>
                                                 </constraints>
                                             </view>
@@ -81,9 +79,6 @@
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="from date 2020-01-01" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AeQ-f9-UgS">
                                                         <rect key="frame" x="80" y="13" width="254" height="34"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="34" id="j0Q-AJ-LhH"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next"/>
                                                     </textField>
@@ -93,8 +88,9 @@
                                                     <constraint firstAttribute="trailing" secondItem="AeQ-f9-UgS" secondAttribute="trailing" constant="20" id="3Tk-cL-auW"/>
                                                     <constraint firstItem="deI-xR-mtd" firstAttribute="leading" secondItem="vOX-BR-rhQ" secondAttribute="leading" constant="20" id="6TA-E4-rDc"/>
                                                     <constraint firstItem="deI-xR-mtd" firstAttribute="centerY" secondItem="vOX-BR-rhQ" secondAttribute="centerY" id="ED3-6K-oof"/>
-                                                    <constraint firstItem="AeQ-f9-UgS" firstAttribute="centerY" secondItem="deI-xR-mtd" secondAttribute="centerY" id="HFL-Q1-xny"/>
                                                     <constraint firstItem="AeQ-f9-UgS" firstAttribute="leading" secondItem="deI-xR-mtd" secondAttribute="trailing" constant="20" id="HuV-XU-8M2"/>
+                                                    <constraint firstItem="AeQ-f9-UgS" firstAttribute="top" secondItem="vOX-BR-rhQ" secondAttribute="top" constant="13" id="d15-of-nwo"/>
+                                                    <constraint firstAttribute="bottom" secondItem="AeQ-f9-UgS" secondAttribute="bottom" constant="13" id="kCG-4k-vOk"/>
                                                     <constraint firstAttribute="height" constant="60" id="nHd-yv-nWc"/>
                                                 </constraints>
                                             </view>
@@ -111,9 +107,6 @@
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="to date 2020-01-01" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oxj-RG-Zq9">
                                                         <rect key="frame" x="80" y="13" width="254" height="34"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="34" id="AYv-nC-LE5"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
                                                     </textField>
@@ -122,11 +115,12 @@
                                                 <constraints>
                                                     <constraint firstItem="Fot-iS-JmE" firstAttribute="leading" secondItem="Wyb-fN-ya4" secondAttribute="leading" constant="20" id="CaH-AI-4Lw"/>
                                                     <constraint firstItem="Fot-iS-JmE" firstAttribute="centerY" secondItem="Wyb-fN-ya4" secondAttribute="centerY" id="Fny-hf-Otg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Oxj-RG-Zq9" secondAttribute="bottom" constant="13" id="H2u-Fc-hpu"/>
                                                     <constraint firstItem="Fot-iS-JmE" firstAttribute="centerY" secondItem="Wyb-fN-ya4" secondAttribute="centerY" id="QxB-TY-sCU"/>
                                                     <constraint firstAttribute="height" constant="60" id="SyZ-JI-ddP"/>
                                                     <constraint firstItem="Oxj-RG-Zq9" firstAttribute="leading" secondItem="Fot-iS-JmE" secondAttribute="trailing" constant="20" id="TH8-iL-lYB"/>
+                                                    <constraint firstItem="Oxj-RG-Zq9" firstAttribute="top" secondItem="Wyb-fN-ya4" secondAttribute="top" constant="13" id="eMF-5J-OgW"/>
                                                     <constraint firstAttribute="trailing" secondItem="Oxj-RG-Zq9" secondAttribute="trailing" constant="20" id="oJl-Dw-mrw"/>
-                                                    <constraint firstItem="Oxj-RG-Zq9" firstAttribute="centerY" secondItem="Fot-iS-JmE" secondAttribute="centerY" id="ucv-XK-kbi"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMO-0c-6Up">

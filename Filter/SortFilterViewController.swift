@@ -41,6 +41,7 @@ class SortFilterViewController: UIViewController {
     @IBAction func didTapSortByDateActionButton(_ sender: Any) {
         sortCircle(sortDate: true)
         parameters["sortBy"] = "publishedAt"
+        showActivityIndicator()
         request.newsRequest(parameters)
         
         
@@ -54,6 +55,7 @@ class SortFilterViewController: UIViewController {
      @IBAction func didTapSortByTitleActionButton(_ sender: Any) {
         sortCircle(sortTitle: true)
         parameters.removeValue(forKey: "sortBy")
+        showActivityIndicator()
 //        sortRequest(parameters, sortByTitle: true)
         request.newsRequest(parameters, sortByTitle: true)
         

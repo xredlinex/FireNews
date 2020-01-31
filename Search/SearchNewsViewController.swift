@@ -29,8 +29,6 @@ class SearchNewsViewController: UIViewController {
     var news: [NewsArticlesModel] = []
     var parameters: [String: Any] = [:]
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

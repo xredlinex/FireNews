@@ -26,7 +26,6 @@ class SearchFireNews: UIViewController {
                               parameters: parameters,
                               encoding: URLEncoding.default,
                               headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
-                                
                 if let recieveNews = response.result.value?.articles {
                     if recieveNews.count != 0 {
                         if sortByTitle == true {

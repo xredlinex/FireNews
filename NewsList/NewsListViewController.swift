@@ -35,12 +35,10 @@ class NewsListViewController: UIViewController {
     
     
     @IBAction func didTapSortActionButton(_ sender: Any) {
-
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SortFilterViewController") as! SortFilterViewController
         viewController.news = news
         viewController.parameters = parameters
-        navigationController?.pushViewController(viewController, animated: true)
-        
+        navigationController?.pushViewController(viewController, animated: false)
     }
     
     

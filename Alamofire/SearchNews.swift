@@ -13,19 +13,14 @@ import AlamofireObjectMapper
 
 
 class SearchFireNews: UIViewController {
- 
     
-    func newsRequest(_ parameters: [String: Any], sortByTitle: Bool? = nil, complition: @escaping( result: [NewsArticlesModel])) -> (Void) {
+    func newsRequest(_ parameters: [String: Any], sortByTitle: Bool? = nil) {
     
         var news: [NewsArticlesModel] = []
         
         let url = URL(string: "https://newsapi.org/v2/everything")
         if let recieveUrl = url {
-            debugPrint(parameters)
-            
-            
-            
-            
+ 
             Alamofire.request(recieveUrl,
                               method: .get,
                               parameters: parameters,
@@ -36,10 +31,10 @@ class SearchFireNews: UIViewController {
                     if recieveNews.count != 0 {
                         if sortByTitle == true {
                             news = recieveNews.sorted(by: { $0.title ?? "" < $1.title ?? ""})
+                            self.transferControll(news, parameters: parameters)
                         } else {
                            news = recieveNews
-                        
-                          
+                            self.transferControll(news, parameters: parameters)
                         }
                     } else {
                         self.showAlertErrorMessage("Can't find news for keyword - \(parameters["q"] ?? "---"), or wrong date period )")

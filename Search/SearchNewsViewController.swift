@@ -28,6 +28,7 @@ class SearchNewsViewController: UIViewController {
     var activityIndicatorView = UIActivityIndicatorView()
     var news: [NewsArticlesModel] = []
     var parameters: [String: Any] = [:]
+
     
     
     override func viewDidLoad() {
@@ -52,7 +53,7 @@ class SearchNewsViewController: UIViewController {
     }
     
     @IBAction func didTapSearchNewsActionButton(_ sender: Any) {
-        
+
         if let keyword = searchNewsTextField.text, keyword != "", let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
             parameters["q"] = keyword
             parameters["pageSize"] = 100
@@ -61,19 +62,8 @@ class SearchNewsViewController: UIViewController {
                     if fromDate < toDate {
                         parameters["from"] = fromDate
                         parameters["to"] = toDate
-                        
                         request.newsRequest(parameters)
-                        debugPrint()
-    
-                        
-                        
-//                DispatchQueue.main.async {
-//                 let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
-//                 viewController.news = self.news
-//                 viewController.parameters = self.parameters
-//                 self.navigationController?.pushViewController(viewController, animated: true)
-//             }
-                        
+
                     } else {
                         showAlertErrorMessage("Wrong Period")
                     }
@@ -82,16 +72,7 @@ class SearchNewsViewController: UIViewController {
                     toDateTextField.text = ""
                 }
             } else {
-                news = request.newsRequest(parameters)
-                debugPrint(news.count)
-          
-             
-//                DispatchQueue.main.async {
-//                    let viewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
-//                    viewController.news = self.news
-//                    viewController.parameters = self.parameters
-//                    self.navigationController?.pushViewController(viewController, animated: true)
-//                }
+                request.newsRequest(parameters)
             }
             
         } else {

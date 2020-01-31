@@ -17,4 +17,16 @@ extension UIViewController {
         alertController.addAction(alertAction)
         UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
+    
+    func transferControll(_ news: [NewsArticlesModel], parameters: [String : Any]) {
+        let navigationController = UINavigationController(rootViewController: self)
+        navigationController.isNavigationBarHidden = true
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController
+        viewController.news = news
+        viewController.parameters = parameters
+        debugPrint("trans")
+        UIApplication.shared.keyWindow?.rootViewController = navigationController
+        navigationController.pushViewController(viewController, animated: false)
+    }
 }

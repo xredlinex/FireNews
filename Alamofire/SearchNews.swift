@@ -40,13 +40,12 @@ class SearchFireNews: UIViewController {
                     }
             
                 } else {
-                    self.showAlertErrorMessage("Responce propblem or wrong date period or check internet connection, please enter correct date or left empty date fields or try later")
+                    self.showAlertErrorMessage("Responce Error")
                 }
             }
         } else {
             showAlertErrorMessage("Fatal Error")
         }
-
     }
 }
 

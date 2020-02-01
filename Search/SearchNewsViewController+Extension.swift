@@ -95,8 +95,8 @@ extension SearchNewsViewController {
 extension SearchNewsViewController {
     
     func uiElementh() {
-        
-        if let imgUrl = URL(string: "https://media.giphy.com/media/yoJC2p5X89p30jl9gQ/giphy.gif") {
+
+        if let imgUrl = URL(string: "https://media.giphy.com/media/2wNOCAfEfEpG0/giphy.gif") {
             newsLogoImageView.kf.setImage(with: imgUrl)
         } else {
             newsLogoImageView.image = UIImage(named: "staticLogo")

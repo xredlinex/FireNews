@@ -47,33 +47,14 @@ class SearchNewsViewController: UIViewController {
         searchNewsTextField.text = ""
         fromDateTextField.text = ""
         toDateTextField.text = ""
-
     }
     
     @IBAction func didTapSearchNewsActionButton(_ sender: Any) {
         showActivityIndicator()
-        if let keyword = searchNewsTextField.text, keyword != "", let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
-            parameters["q"] = keyword
-            parameters["pageSize"] = 100
-            if fromDate != "" || toDate != "" {
-                if checkDateFormat(fromDate) == true && checkDateFormat(toDate) {
-                    if fromDate < toDate {
-                        parameters["from"] = fromDate
-                        parameters["to"] = toDate
-                        request.newsRequest(parameters)
-                    } else {
-                        showAlertErrorMessage("Wrong Period")
-                    }
-                } else {
-                    fromDateTextField.text = ""
-                    toDateTextField.text = ""
-                    showAlertErrorMessage("Wrong Period")
-                }
-            } else {
-                request.newsRequest(parameters)
-            }
+        if let keyword = searchNewsTextField.text, keyword != "" , let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
+            getRequest(keyword, from: fromDate, to: toDate)
         } else {
-            showAlertErrorMessage("Empty Search Field!")
+            showAlertErrorMessage("Emty Search Field")
         }
     }
 }
@@ -81,11 +62,27 @@ class SearchNewsViewController: UIViewController {
 
 extension SearchNewsViewController {
     
-    func prepareRequest(_ keyword: String, from: String, to: String) {
+    func getRequest(_ keyword: String, from: String, to: String) {
         
-        
-        
-        
+        parameters["q"] = keyword
+        parameters["pageSize"] = 100
+        if from != "" || to != "" {
+            if checkDateFormat(from) == true && checkDateFormat(to) == true {
+                if from < to {
+                    parameters["from"] = from
+                    parameters["to"] = to
+                    request.newsRequest(parameters)
+                } else {
+                    showAlertErrorMessage("Wrong Period")
+                }
+            } else {
+                showAlertErrorMessage("Wrong Period")
+                fromDateTextField.text = ""
+                toDateTextField.text = ""
+            }
+        } else {
+            request.newsRequest(parameters)
+        }
     }
 }
 

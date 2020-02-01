@@ -31,7 +31,6 @@ class SortFilterViewController: UIViewController {
         super.viewDidLoad()
         sortCircle()
         updateUi()
-        debugPrint(parameters)
     }
     
     @IBAction func didTapGoBackButtin(_ sender: Any) {
@@ -39,42 +38,20 @@ class SortFilterViewController: UIViewController {
     }
     
     @IBAction func didTapSortByDateActionButton(_ sender: Any) {
+        showActivityIndicator()
         sortCircle(sortDate: true)
         parameters["sortBy"] = "publishedAt"
-        showActivityIndicator()
         request.newsRequest(parameters)
     }
     
      @IBAction func didTapSortByTitleActionButton(_ sender: Any) {
+        showActivityIndicator()
         sortCircle(sortTitle: true)
         parameters.removeValue(forKey: "sortBy")
-        showActivityIndicator()
         request.newsRequest(parameters, sortByTitle: true)
      }
 }
 
-extension SortFilterViewController {
-    
-    func updateUi() {
-        sortByDateView.clipsToBounds = true
-        sortByTitleView.clipsToBounds = true
-        sortByDateView.layer.cornerRadius = 12
-        sortByTitleView.layer.cornerRadius = 12
-    }
-}
 
-extension SortFilterViewController {
-    
-    func sortCircle(sortDate: Bool? = nil, sortTitle: Bool? = nil) {
-        if sortDate == true {
-            sortByDateImageView.image = UIImage(systemName: "checkmark.circle.fill")
-        } else {
-            sortByDateImageView.image = UIImage(systemName: "circle")
-        }
-        if sortTitle == true {
-            sortByTitleImageView.image = UIImage(systemName: "checkmark.circle.fill")
-        } else {
-            sortByTitleImageView.image = UIImage(systemName: "circle")
-        }
-    }
-}
+
+

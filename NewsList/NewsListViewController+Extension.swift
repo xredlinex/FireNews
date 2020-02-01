@@ -30,7 +30,17 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "NewsViewController") as! NewsViewController
+        if let url = news[indexPath.row].url {
+            viewController.url = url
+            navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            showAlertErrorMessage("Sorry no link")
+        }
+    }
 }
 
 //  MARK: - SHOW MORE BUTTON -

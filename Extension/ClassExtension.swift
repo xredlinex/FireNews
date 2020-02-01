@@ -25,7 +25,6 @@ extension UIViewController {
             activityIndicator.color = .systemPurple
             activityIndicator.center = self.view.center
             activityIndicator.startAnimating()
-//            self.view.isUserInteractionEnabled = false
             self.view.addSubview(activityIndicator)
         }
     }
@@ -38,15 +37,11 @@ extension UIViewController {
         let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in}
         customKeyWindow?.viewWithTag(666)?.removeFromSuperview()
-
-//        UIApplication.shared.keyWindow?.viewWithTag(666)?.isUserInteractionEnabled = true
         alertController.addAction(alertAction)
         customKeyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
         
         DispatchQueue.main.async {
             if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
-                
-//                self.view.isUserInteractionEnabled = true
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
             }

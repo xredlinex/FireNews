@@ -11,7 +11,9 @@ import Kingfisher
 
 protocol NewsTableViewCellDelegate {
     func didTapShowDescrioption(index: Int)
+
 }
+
 
 class NewsTableViewCell: UITableViewCell {
     

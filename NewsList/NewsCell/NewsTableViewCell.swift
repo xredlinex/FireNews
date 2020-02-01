@@ -14,7 +14,6 @@ protocol NewsTableViewCellDelegate {
 
 }
 
-
 class NewsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellView: UIView!
@@ -61,7 +60,7 @@ class NewsTableViewCell: UITableViewCell {
         newsDescriptionTextLabel.text = news.description ?? "-"
         newsPublishAtTextLabel.text = convertDate(news.publishedAt ?? "-")
 
-//        MARK: - visual ui part -
+//       MARK: - visual ui part -
         viewForImageView.clipsToBounds = true
         viewForImageView.layer.cornerRadius = 8
         cellView.clipsToBounds = true
@@ -69,7 +68,7 @@ class NewsTableViewCell: UITableViewCell {
     }
 }
 
-//  MARK: - date convert
+//      MARK: - date convert
 extension NewsTableViewCell {
     func convertDate(_ dateString: String) -> String {
         let dateFormatter = DateFormatter()

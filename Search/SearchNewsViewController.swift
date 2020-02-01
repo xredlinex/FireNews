@@ -60,30 +60,6 @@ class SearchNewsViewController: UIViewController {
 }
 
 
-extension SearchNewsViewController {
-    
-    func getRequest(_ keyword: String, from: String, to: String) {
-        
-        parameters["q"] = keyword
-        parameters["pageSize"] = 100
-        if from != "" || to != "" {
-            if checkDateFormat(from) == true && checkDateFormat(to) == true {
-                if from < to {
-                    parameters["from"] = from
-                    parameters["to"] = to
-                    request.newsRequest(parameters)
-                } else {
-                    showAlertErrorMessage("Wrong Period")
-                }
-            } else {
-                showAlertErrorMessage("Wrong Period")
-                fromDateTextField.text = ""
-                toDateTextField.text = ""
-            }
-        } else {
-            request.newsRequest(parameters)
-        }
-    }
-}
+
 
 

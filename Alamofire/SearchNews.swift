@@ -11,7 +11,6 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 
-
 class SearchFireNews: UIViewController {
     
     func newsRequest(_ parameters: [String: Any], sortByTitle: Bool? = nil) {

@@ -29,7 +29,7 @@ extension SearchNewsViewController {
 extension SearchNewsViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        bottomHeightConstraint.constant = 300
+        bottomHeightConstraint.constant = 260
         return true
     }
     
@@ -61,27 +61,9 @@ extension SearchNewsViewController: UITextFieldDelegate {
     }
 }
 
-////  MARK: - ACTIVITY INDICATOR-
-//extension SearchNewsViewController {
-//    
-//    func showActivityIndicator() {
-//        activityIndicatorView.hidesWhenStopped = true
-//        activityIndicatorView.style = .medium
-//        activityIndicatorView.color = .white
-//        activityIndicatorView.center = self.view.center
-//        view.addSubview(activityIndicatorView)
-//        activityIndicatorView.startAnimating()
-//        view.isUserInteractionEnabled = false
-//    }
-//    
-//    func hideActivityIndicator() {
-//        view.isUserInteractionEnabled = true
-//        activityIndicatorView.stopAnimating()
-//    }
-//}
-
 //  MARK: - ADD NEXT DONE BUTTONS TO NUMBER PAD - 
 extension SearchNewsViewController {
+    
     func addNextButtonFromDate() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -89,7 +71,6 @@ extension SearchNewsViewController {
         let label = UIBarButtonItem(title: "dashes '-' are added automatically", style: .plain, target: self, action: nil)
         toolBar.layer.backgroundColor = UIColor.systemPurple.cgColor
         label.tintColor = UIColor.systemPurple
-        
         toolBar.setItems([nextToolBarButton, label], animated: false)
         fromDateTextField.inputAccessoryView = toolBar
     }
@@ -99,7 +80,7 @@ extension SearchNewsViewController {
         let doneToolBarButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneBarButtonToDate))
         let label = UIBarButtonItem(title: "dashes '-' are added automatically", style: .plain, target: self, action: nil)
         label.tintColor = UIColor.systemPurple
-        toolBar.setItems([label, doneToolBarButton], animated: false)
+        toolBar.setItems([doneToolBarButton, label], animated: false)
         toDateTextField.inputAccessoryView = toolBar
     }
     @objc func nextBarButtonFromDate() {
@@ -112,6 +93,7 @@ extension SearchNewsViewController {
 }
 
 extension SearchNewsViewController {
+    
     func uiElementh() {
         
         if let imgUrl = URL(string: "https://media.giphy.com/media/yoJC2p5X89p30jl9gQ/giphy.gif") {
@@ -133,6 +115,7 @@ extension SearchNewsViewController {
 
 //  MARK: - KEYBOARD ACTION - 
 extension SearchNewsViewController {
+    
     @objc func keyboardWillHide() {
         bottomHeightConstraint.constant = 0
         self.view.endEditing(true)

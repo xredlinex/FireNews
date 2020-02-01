@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIApplication {
-    var keyWindowInConnectedScenes: UIWindow? {
+    var keyWindow: UIWindow? {
         return windows.first(where: { $0.isKeyWindow })
     }
 }
@@ -25,55 +25,37 @@ extension UIViewController {
             activityIndicator.color = .systemPurple
             activityIndicator.center = self.view.center
             activityIndicator.startAnimating()
+//            self.view.isUserInteractionEnabled = false
             self.view.addSubview(activityIndicator)
-            self.view.isUserInteractionEnabled = false
         }
     }
-    
-//    func hideActivityIndicator() {
-//        DispatchQueue.main.async {
-//                if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
-//                debugPrint(activityIndicator.tag)
-//                    activityIndicator.hidesWhenStopped = true
-//                activityIndicator.stopAnimating()
-//                activityIndicator.removeFromSuperview()
-//                self.view.isUserInteractionEnabled = true
-//
-//                }
-//        }
-//    }
 }
 
 extension UIViewController {
     
     func showAlertErrorMessage(_ message: String) {
-        let customKeyWindow: UIWindow? = UIApplication.shared.keyWindowInConnectedScenes
+        let customKeyWindow: UIWindow? = UIApplication.shared.keyWindow
         let alertController = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default) { (_) in}
         customKeyWindow?.viewWithTag(666)?.removeFromSuperview()
-//        UIApplication.shared.endIgnoringInteractionEvents()
-//        self.view.isUserInteractionEnabled = true
-        
-        
-//        customKeyWindow?.rootViewController?.view.isUserInteractionEnabled = true
-//        self.view.isUserInteractionEnabled = true
-//        customKeyWindow?.isUserInteractionEnabled = true
+
+//        UIApplication.shared.keyWindow?.viewWithTag(666)?.isUserInteractionEnabled = true
         alertController.addAction(alertAction)
         customKeyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
         
-        
         DispatchQueue.main.async {
             if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
-                debugPrint("dsds")
+                
+//                self.view.isUserInteractionEnabled = true
                 activityIndicator.stopAnimating()
                 activityIndicator.removeFromSuperview()
-                self.view.isUserInteractionEnabled = true
             }
         }
     }
     
     func transferControll(_ news: [NewsArticlesModel], parameters: [String : Any]) {
-        let myKeyWindow: UIWindow? = UIApplication.shared.keyWindowInConnectedScenes
+        
+        let myKeyWindow: UIWindow? = UIApplication.shared.keyWindow
         let navigationController = UINavigationController(rootViewController: self)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "NewsListViewController") as! NewsListViewController

@@ -25,7 +25,6 @@ class SearchNewsViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     
     var request = SearchFireNews()
-//    var activityIndicatorView = UIActivityIndicatorView()
     var news: [NewsArticlesModel] = []
     var parameters: [String: Any] = [:]
 
@@ -62,20 +61,17 @@ class SearchNewsViewController: UIViewController {
                         parameters["from"] = fromDate
                         parameters["to"] = toDate
                         request.newsRequest(parameters)
-                        
                     } else {
                         showAlertErrorMessage("Wrong Period")
                     }
                 } else {
                     fromDateTextField.text = ""
                     toDateTextField.text = ""
+                    showAlertErrorMessage("Wrong Period")
                 }
             } else {
                 request.newsRequest(parameters)
-                
-
             }
-            
         } else {
             showAlertErrorMessage("Empty Search Field!")
         }
@@ -83,6 +79,14 @@ class SearchNewsViewController: UIViewController {
 }
 
 
-
+extension SearchNewsViewController {
+    
+    func prepareRequest(_ keyword: String, from: String, to: String) {
+        
+        
+        
+        
+    }
+}
 
 

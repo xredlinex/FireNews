@@ -37,16 +37,10 @@ class SearchFireNews: UIViewController {
                         }
                     } else {
                         self.showAlertErrorMessage("Can't find news for keyword - \(parameters["q"] ?? "---"), or wrong date period )")
-                        
-//                        let customKeyWindow: UIWindow? = UIApplication.shared.keyWindowInConnectedScenes
-//                        
-//                        customKeyWindow?.viewWithTag(666)?.removeFromSuperview()
-//                        customKeyWindow?.isUserInteractionEnabled = true
-
                     }
             
                 } else {
-                    self.showAlertErrorMessage("Wrong date period, please enter correct date or left empty date fields")
+                    self.showAlertErrorMessage("Responce propblem or wrong date period or check internet connection, please enter correct date or left empty date fields or try later")
                 }
             }
         } else {

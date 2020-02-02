@@ -14,7 +14,7 @@ import Kingfisher
 
 class SearchNewsViewController: UIViewController {
     
-    @IBOutlet weak var newsLogoImageView: UIImageView!
+    
     @IBOutlet weak var searchNewsTextField: UITextField!
     @IBOutlet weak var fromDateTextField: UITextField!
     @IBOutlet weak var toDateTextField: UITextField!

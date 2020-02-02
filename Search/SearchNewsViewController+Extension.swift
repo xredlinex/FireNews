@@ -123,11 +123,7 @@ extension SearchNewsViewController {
     
     func uiElementh() {
 
-        if let imgUrl = URL(string: "https://media.giphy.com/media/2wNOCAfEfEpG0/giphy.gif") {
-            newsLogoImageView.kf.setImage(with: imgUrl)
-        } else {
-            newsLogoImageView.image = UIImage(named: "staticLogo")
-        }
+ 
         
         searchView.clipsToBounds = true
         fromDateView.clipsToBounds = true

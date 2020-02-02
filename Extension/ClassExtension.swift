@@ -74,6 +74,7 @@ extension UIViewController {
         
         let imgUrl = URL(string: "https://media.giphy.com/media/cN34n6Ka8GrcY/giphy.gif")
         backgroundImage.kf.setImage(with: imgUrl)
+        backgroundImage.contentMode = .scaleAspectFill
         
         
         

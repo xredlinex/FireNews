@@ -21,23 +21,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPl-mm-a7Q">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LyY-Rh-phX">
-                                                <rect key="frame" x="57" y="0.0" width="300" height="200"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uOq-yp-8i1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="uOq-yp-8i1" firstAttribute="leading" secondItem="LyY-Rh-phX" secondAttribute="leading" id="6um-pB-UEH"/>
-                                                    <constraint firstItem="uOq-yp-8i1" firstAttribute="top" secondItem="LyY-Rh-phX" secondAttribute="top" id="ERU-3a-OnH"/>
-                                                    <constraint firstAttribute="height" constant="200" id="h94-Ic-LPy"/>
-                                                    <constraint firstAttribute="trailing" secondItem="uOq-yp-8i1" secondAttribute="trailing" id="i1G-pe-pgb"/>
-                                                    <constraint firstAttribute="bottom" secondItem="uOq-yp-8i1" secondAttribute="bottom" id="vhV-Oc-nXv"/>
-                                                    <constraint firstAttribute="width" constant="300" id="zxa-Dd-yVG"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xR4-Mw-ewR">
                                                 <rect key="frame" x="30" y="300" width="354" height="60"/>
                                                 <subviews>
@@ -138,19 +121,17 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="xR4-Mw-ewR" firstAttribute="top" secondItem="pPl-mm-a7Q" secondAttribute="top" constant="300" id="0Dl-ob-Qge"/>
                                             <constraint firstItem="Wyb-fN-ya4" firstAttribute="top" secondItem="vOX-BR-rhQ" secondAttribute="bottom" constant="30" id="2pK-hu-WgZ"/>
-                                            <constraint firstItem="LyY-Rh-phX" firstAttribute="centerX" secondItem="pPl-mm-a7Q" secondAttribute="centerX" id="9B5-vB-DZe"/>
                                             <constraint firstAttribute="bottom" secondItem="sMO-0c-6Up" secondAttribute="bottom" constant="50" id="CAh-0z-97j"/>
                                             <constraint firstItem="Wyb-fN-ya4" firstAttribute="trailing" secondItem="vOX-BR-rhQ" secondAttribute="trailing" id="DQS-iZ-4vc"/>
                                             <constraint firstItem="vOX-BR-rhQ" firstAttribute="top" secondItem="xR4-Mw-ewR" secondAttribute="bottom" constant="30" id="Gho-Ll-PNf"/>
                                             <constraint firstItem="xR4-Mw-ewR" firstAttribute="leading" secondItem="pPl-mm-a7Q" secondAttribute="leading" constant="30" id="GrQ-dF-fwu"/>
-                                            <constraint firstItem="LyY-Rh-phX" firstAttribute="top" secondItem="pPl-mm-a7Q" secondAttribute="top" id="QGu-TM-wbQ"/>
                                             <constraint firstItem="vOX-BR-rhQ" firstAttribute="trailing" secondItem="xR4-Mw-ewR" secondAttribute="trailing" id="QVS-YR-hJV"/>
                                             <constraint firstAttribute="trailing" secondItem="xR4-Mw-ewR" secondAttribute="trailing" constant="30" id="Qam-7C-j9C"/>
                                             <constraint firstItem="vOX-BR-rhQ" firstAttribute="leading" secondItem="xR4-Mw-ewR" secondAttribute="leading" id="XNo-ib-ZYe"/>
-                                            <constraint firstItem="xR4-Mw-ewR" firstAttribute="top" secondItem="LyY-Rh-phX" secondAttribute="bottom" constant="100" id="a7g-k7-UqP"/>
                                             <constraint firstItem="sMO-0c-6Up" firstAttribute="leading" secondItem="Wyb-fN-ya4" secondAttribute="leading" id="cfB-A5-qW4"/>
                                             <constraint firstItem="sMO-0c-6Up" firstAttribute="trailing" secondItem="Wyb-fN-ya4" secondAttribute="trailing" id="iS7-82-7dB"/>
                                             <constraint firstItem="sMO-0c-6Up" firstAttribute="top" secondItem="Wyb-fN-ya4" secondAttribute="bottom" constant="50" id="oW5-AK-mQk"/>
@@ -182,7 +163,6 @@
                         <outlet property="bottomHeightConstraint" destination="Hpw-0j-iB7" id="nps-2T-BYS"/>
                         <outlet property="fromDateTextField" destination="AeQ-f9-UgS" id="tZp-pT-U6A"/>
                         <outlet property="fromDateView" destination="vOX-BR-rhQ" id="AYF-GO-LRC"/>
-                        <outlet property="newsLogoImageView" destination="uOq-yp-8i1" id="UFa-eC-5vy"/>
                         <outlet property="searchButton" destination="sMO-0c-6Up" id="uEq-qs-HSh"/>
                         <outlet property="searchNewsTextField" destination="iZT-cF-fog" id="EMS-YL-bP8"/>
                         <outlet property="searchView" destination="xR4-Mw-ewR" id="tzC-kN-Q9Y"/>

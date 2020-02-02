@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIApplication {
     var keyWindow: UIWindow? {
@@ -62,6 +63,27 @@ extension UIViewController {
     }
 }
 
-
+extension UIViewController {
+    func backgroundView() {
+        
+  
+        
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        let backgroundForImage = UIView(frame: UIScreen.main.bounds)
+        
+        let imgUrl = URL(string: "https://media.giphy.com/media/cN34n6Ka8GrcY/giphy.gif")
+        backgroundImage.kf.setImage(with: imgUrl)
+        
+        
+        
+        
+        view.addSubview(backgroundImage)
+        view.addSubview(backgroundForImage)
+        
+        self.view.sendSubviewToBack(backgroundForImage)
+        self.view.sendSubviewToBack(backgroundImage)
+    }
+}
 
 

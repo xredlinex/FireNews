@@ -32,6 +32,7 @@ class SearchNewsViewController: UIViewController {
         super.viewDidLoad()
 
         uiElementh()
+        backgroundView()
         
         let keyboardHide = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
         view.addGestureRecognizer(keyboardHide)

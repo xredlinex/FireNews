@@ -12,8 +12,6 @@ import AlamofireObjectMapper
 
 class SortFilterViewController: UIViewController {
 
-    
-    
     @IBOutlet weak var sortByDateView: UIView!
     @IBOutlet weak var sortByTitleView: UIView!
     
@@ -25,7 +23,6 @@ class SortFilterViewController: UIViewController {
     var request = SearchFireNews()
     var news: [NewsArticlesModel] = []
     var parameters: [String : Any] = [:]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

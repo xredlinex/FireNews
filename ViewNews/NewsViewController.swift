@@ -31,7 +31,6 @@ class NewsViewController: UIViewController {
     }
 }
 
-
 extension NewsViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

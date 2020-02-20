@@ -179,7 +179,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="HRl-z0-IPo"/>
                     <connections>
-                        <outlet property="bottomHeightConstraint" destination="Hpw-0j-iB7" id="nps-2T-BYS"/>
+                        <outlet property="bottomHeightConstraint" destination="Hpw-0j-iB7" id="NBX-4R-ne4"/>
                         <outlet property="fromDateTextField" destination="AeQ-f9-UgS" id="tZp-pT-U6A"/>
                         <outlet property="fromDateView" destination="vOX-BR-rhQ" id="AYF-GO-LRC"/>
                         <outlet property="newsLogoImageView" destination="uOq-yp-8i1" id="UFa-eC-5vy"/>

@@ -56,7 +56,7 @@ extension SearchNewsViewController {
 extension SearchNewsViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        bottomHeightConstraint.constant = 260
+        bottomHeightConstraint.constant = 270
         return true
     }
     

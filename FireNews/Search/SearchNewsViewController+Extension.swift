@@ -101,6 +101,7 @@ extension SearchNewsViewController {
         toolBar.setItems([nextToolBarButton, label], animated: false)
         fromDateTextField.inputAccessoryView = toolBar
     }
+    
     func addDoneButtonToDate() {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -110,9 +111,11 @@ extension SearchNewsViewController {
         toolBar.setItems([doneToolBarButton, label], animated: false)
         toDateTextField.inputAccessoryView = toolBar
     }
+    
     @objc func nextBarButtonFromDate() {
         toDateTextField.becomeFirstResponder()
     }
+    
     @objc func doneBarButtonToDate() {
         toDateTextField.resignFirstResponder()
         bottomHeightConstraint.constant = 0

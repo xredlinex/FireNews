@@ -27,10 +27,10 @@ class SearchNewsViewController: UIViewController {
     var request = SearchFireNews()
     var news: [NewsArticlesModel] = []
     var parameters: [String: Any] = [:]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         uiElementh()
         
         let keyboardHide = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))

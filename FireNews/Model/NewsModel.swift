@@ -26,7 +26,7 @@ class NewsModel: Mappable {
 }
 
 class NewsArticlesModel: Mappable {
-
+    
     var sourse: NewsArticlesSourseModel?
     var author: String?
     var title: String?
@@ -53,16 +53,16 @@ class NewsArticlesModel: Mappable {
 }
 
 class NewsArticlesSourseModel: Mappable {
- 
+    
     var id: String?
     var name: String?
     
     required init?(map: Map) {
-     }
-     
+    }
+    
     func mapping(map: Map) {
         id      <- map["id"]
         name    <- map["name"]
-     }
+    }
 }
 

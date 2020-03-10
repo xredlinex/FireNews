@@ -13,18 +13,19 @@ import AlamofireObjectMapper
 
 class SearchFireNews: UIViewController {
     
-    func newsRequest(_ parameters: [String: Any], sortByTitle: Bool? = nil) {
+    func newsRequest(_ parameters: [String: Any], activityIndicator: UIActivityIndicatorView, sortByTitle: Bool? = nil) {
     
         var news: [NewsArticlesModel] = []
         
         let url = URL(string: "https://newsapi.org/v2/everything")
         if let recieveUrl = url {
- 
+            activityIndicator.startAnimating()
             Alamofire.request(recieveUrl,
                               method: .get,
                               parameters: parameters,
                               encoding: URLEncoding.default,
                               headers: ["X-Api-Key": "4ea21ee288f24ae880ef13ebda15edbd"]).responseObject { (response: DataResponse<NewsModel>) in
+                activityIndicator.stopAnimating()
                 if let recieveNews = response.result.value?.articles {
                     if recieveNews.count != 0 {
                         if sortByTitle == true {

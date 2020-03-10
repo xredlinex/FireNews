@@ -47,11 +47,7 @@ extension NewsListViewController: UITableViewDelegate, UITableViewDataSource {
 extension NewsListViewController: NewsTableViewCellDelegate {
     
     func didTapShowDescrioption(index: Int) {
-        if news[index].showDescript == false {
-            news[index].showDescript = true
-        } else {
-            news[index].showDescript = false
-        }
+        news[index].showDescript = !news[index].showDescript
         tableView.reloadData()
     }
 }

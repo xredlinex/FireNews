@@ -20,7 +20,7 @@ import UIKit
                  if from < to {
                      parameters["from"] = from
                      parameters["to"] = to
-                     request.newsRequest(parameters)
+                     request.newsRequest(parameters, activityIndicator: activityIndicator)
                  } else {
                      showAlertErrorMessage("Wrong Period")
                  }
@@ -30,7 +30,7 @@ import UIKit
                  toDateTextField.text = ""
              }
          } else {
-             request.newsRequest(parameters)
+             request.newsRequest(parameters, activityIndicator: activityIndicator)
          }
      }
  }
@@ -75,11 +75,10 @@ extension SearchNewsViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == fromDateTextField || textField == toDateTextField{
-            if textField.text?.count == 4 || textField.text?.count == 5  || textField.text?.count == 7 {
-                if string != "" {
-                    textField.text = textField.text! + "-"
-                }
+        
+        if textField == fromDateTextField || textField == toDateTextField, let text = textField.text, !text.isEmpty {
+            if (4...5) ~= text.count || text.count == 7 {
+                textField.text = textField.text! + "-"
             }
             return !(textField.text!.count > 9 && string.count > range.length)
         } else {
@@ -152,3 +151,13 @@ extension SearchNewsViewController {
     }
 }
 
+extension SearchNewsViewController {
+    
+    func setupForActivityIndicator() {
+        
+        activityIndicator.style = .medium
+        activityIndicator.color = .systemPurple
+        activityIndicator.center = self.view.center
+        view.addSubview(activityIndicator)
+    }
+}

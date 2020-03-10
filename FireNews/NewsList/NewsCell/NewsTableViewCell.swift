@@ -38,16 +38,10 @@ class NewsTableViewCell: UITableViewCell {
     func updateNewsCell(_ news: NewsArticlesModel) {
         
 //        MARK: - show hide button -
-        if news.showDescript == true {
-            showDescriotionHeightContstraint.priority = UILayoutPriority(rawValue: 800)
-            newsDescriptionTextLabel.numberOfLines = 0
-            showMoreButton.setTitle("hide", for: .normal)
-        } else {
-            showDescriotionHeightContstraint.priority = UILayoutPriority(rawValue: 600)
-            newsDescriptionTextLabel.numberOfLines = 1
-            showMoreButton.setTitle("show more", for: .normal)
-        }
-        
+        showDescriotionHeightContstraint.priority = UILayoutPriority(news.showDescript ? 800 : 600)
+        newsDescriptionTextLabel.numberOfLines = news.showDescript ? 0 : 1
+        showMoreButton.setTitle(news.showDescript ? "hide" : "show more", for: .normal)
+    
 //        MARK: - dowload image from url kingsfisher -
         if let url = news.urlToImage {
           let imgUrl = URL(string: url)

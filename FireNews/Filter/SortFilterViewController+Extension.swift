@@ -33,3 +33,14 @@ extension SortFilterViewController {
         }
     }
 }
+
+extension SortFilterViewController {
+    
+    func setupforActivityImdicator() {
+        
+        activityIndicator.style = .medium
+        activityIndicator.color = .systemPurple
+        activityIndicator.center = self.view.center
+        view.addSubview(activityIndicator)
+    }
+}

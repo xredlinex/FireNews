@@ -14,9 +14,12 @@ class NewsViewController: UIViewController {
     @IBOutlet weak var webView: WKWebView!
     
     var url = String()
+    let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupForActivityIndicator()
         
         if let urlRecieve = URL(string: url) {
             let urlRequest = URLRequest(url: urlRecieve)
@@ -31,16 +34,3 @@ class NewsViewController: UIViewController {
     }
 }
 
-extension NewsViewController: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        showActivityIndicator()
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-        }
-    }
-}

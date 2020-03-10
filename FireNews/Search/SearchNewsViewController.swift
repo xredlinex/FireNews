@@ -24,6 +24,7 @@ class SearchNewsViewController: UIViewController {
     @IBOutlet weak var toDateView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     
+    let activityIndicator = UIActivityIndicatorView()
     var request = SearchFireNews()
     var news: [NewsArticlesModel] = []
     var parameters: [String: Any] = [:]
@@ -32,6 +33,7 @@ class SearchNewsViewController: UIViewController {
         super.viewDidLoad()
         
         uiElementh()
+        setupForActivityIndicator()
         
         let keyboardHide = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
         view.addGestureRecognizer(keyboardHide)
@@ -50,7 +52,6 @@ class SearchNewsViewController: UIViewController {
     }
     
     @IBAction func didTapSearchNewsActionButton(_ sender: Any) {
-        showActivityIndicator()
         if let keyword = searchNewsTextField.text, keyword != "" , let fromDate = fromDateTextField.text, let toDate = toDateTextField.text {
             getRequest(keyword, from: fromDate, to: toDate)
         } else {

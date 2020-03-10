@@ -23,11 +23,13 @@ class SortFilterViewController: UIViewController {
     var request = SearchFireNews()
     var news: [NewsArticlesModel] = []
     var parameters: [String : Any] = [:]
+    let activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sortCircle()
         updateUi()
+        setupforActivityImdicator()
     }
     
     @IBAction func didTapGoBackButtin(_ sender: Any) {
@@ -35,17 +37,17 @@ class SortFilterViewController: UIViewController {
     }
     
     @IBAction func didTapSortByDateActionButton(_ sender: Any) {
-        showActivityIndicator()
+        activityIndicator.startAnimating()
         sortCircle(sortDate: true)
         parameters["sortBy"] = "publishedAt"
-        request.newsRequest(parameters)
+        request.newsRequest(parameters, activityIndicator: activityIndicator)
     }
     
      @IBAction func didTapSortByTitleActionButton(_ sender: Any) {
-        showActivityIndicator()
+        activityIndicator.startAnimating()
         sortCircle(sortTitle: true)
         parameters.removeValue(forKey: "sortBy")
-        request.newsRequest(parameters, sortByTitle: true)
+        request.newsRequest(parameters, activityIndicator: activityIndicator, sortByTitle: true)
      }
 }
 

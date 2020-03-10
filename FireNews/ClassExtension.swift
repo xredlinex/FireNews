@@ -15,22 +15,6 @@ extension UIApplication {
 }
 
 extension UIViewController {
-    var activityIndicatorTag: Int { return 666 }
-    
-    func showActivityIndicator() {
-        DispatchQueue.main.async {
-            let activityIndicator = UIActivityIndicatorView()
-            activityIndicator.tag = self.activityIndicatorTag
-            activityIndicator.style = .medium
-            activityIndicator.color = .systemPurple
-            activityIndicator.center = self.view.center
-            activityIndicator.startAnimating()
-            self.view.addSubview(activityIndicator)
-        }
-    }
-}
-
-extension UIViewController {
     
     func showAlertErrorMessage(_ message: String) {
         let customKeyWindow: UIWindow? = UIApplication.shared.keyWindow
@@ -39,13 +23,6 @@ extension UIViewController {
         customKeyWindow?.viewWithTag(666)?.removeFromSuperview()
         alertController.addAction(alertAction)
         customKeyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-        
-        DispatchQueue.main.async {
-            if let activityIndicator = self.view.subviews.filter({ $0.tag == self.activityIndicatorTag}).first as? UIActivityIndicatorView {
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
-            }
-        }
     }
     
     func transferControll(_ news: [NewsArticlesModel], parameters: [String : Any]) {
